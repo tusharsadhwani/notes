@@ -20,12 +20,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         primaryColor: Colors.indigo.shade50,
         textTheme: TextTheme(
-            body1: TextStyle(
-              fontFamily: GoogleFonts.alegreya().fontFamily,
-              fontSize: 22.0,
-            ),
-            display1: TextStyle(
-              fontFamily: GoogleFonts.alegreya().fontFamily,
+          display1: TextStyle(
+            color: Colors.black87,
+            fontFamily: GoogleFonts.alegreya().fontFamily,
+            fontSize: 22.0,
+          ),
+          display2: TextStyle(
+            fontFamily: GoogleFonts.alegreya().fontFamily,
               color: Colors.black87,
               fontSize: 36.0,
               height: 1.5,
