@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
             title: GoogleFonts.yesevaOne(
               color: Colors.black,
               fontSize: 24.0,
+              fontStyle: FontStyle.italic,
             ),
           ),
         ),
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: NotesScreen(title: 'NotesApp'),
+      home: NotesScreen(title: 'Quill'),
       routes: {
         NewNoteScreen.routeName: (_) => NewNoteScreen(),
       },
