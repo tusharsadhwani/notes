@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'new_note_screen.dart';
 import '../widgets/note.dart';
@@ -47,12 +48,12 @@ class _NotesScreenState extends State<NotesScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        child: StaggeredGridView.countBuilder(
+          crossAxisCount: 2,
           itemBuilder: (ctx, idx) =>
               Note(notes[idx]['title'], notes[idx]['body']),
           itemCount: notes.length,
+          staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
         ),
       ),
       floatingActionButton: FloatingActionButton(
