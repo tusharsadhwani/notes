@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           textTheme: TextTheme(
-            title: GoogleFonts.yesevaOne(
+            headline6: GoogleFonts.yesevaOne(
               color: Colors.black,
               fontSize: 24.0,
               fontStyle: FontStyle.italic,
@@ -24,12 +24,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         primaryColor: Colors.indigo.shade50,
         textTheme: TextTheme(
-          display1: TextStyle(
+          headline4: TextStyle(
             color: Colors.black87,
             fontFamily: GoogleFonts.alegreya().fontFamily,
             fontSize: 22.0,
           ),
-          display2: TextStyle(
+          headline3: TextStyle(
             fontFamily: GoogleFonts.alegreya().fontFamily,
             color: Colors.black,
             fontSize: 36.0,

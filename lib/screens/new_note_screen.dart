@@ -19,11 +19,11 @@ class _NewNoteScreenState extends State<NewNoteScreen> {
           children: [
             Text(
               'Title',
-              style: Theme.of(context).textTheme.display2,
+              style: Theme.of(context).textTheme.headline3,
             ),
             Text(
               'Non amet sit sit aliqua. Et consequat cillum laborum ipsum occaecat pariatur labore commodo. Deserunt aliqua dolor ut sunt dolore eiusmod exercitation ut sint. Ex cupidatat minim nulla laborum sunt mollit tempor irure officia.\n\nDo amet dolor est dolore non in nostrud nostrud reprehenderit sunt eiusmod. Irure cupidatat labore commodo sunt nulla id esse exercitation cupidatat commodo culpa qui qui. Tempor quis exercitation ad qui officia. Proident ipsum fugiat nisi nostrud.',
-              style: Theme.of(context).textTheme.display1,
+              style: Theme.of(context).textTheme.headline4,
             ),
             SizedBox(
               height: 12.0,
