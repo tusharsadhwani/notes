@@ -35,6 +35,7 @@ class _MyAppState extends State<MyApp> {
               fontFamily: GoogleFonts.robotoSlab().fontFamily,
               color: Colors.black,
               fontSize: 32.0,
+              height: 0.9,
             ),
             button: TextStyle(
               fontFamily: GoogleFonts.openSans().fontFamily,

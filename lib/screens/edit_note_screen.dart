@@ -4,14 +4,20 @@ import 'package:provider/provider.dart';
 import '../models/notes_database.dart';
 import '../widgets/note_editor.dart';
 
-class NewNoteScreen extends StatefulWidget {
-  static const routeName = '/newnote';
+class EditNoteScreen extends StatefulWidget {
+  final int id;
+  final String title, body;
+  EditNoteScreen({
+    @required this.id,
+    @required this.title,
+    @required this.body,
+  });
 
   @override
-  _NewNoteScreenState createState() => _NewNoteScreenState();
+  _EditNoteScreenState createState() => _EditNoteScreenState();
 }
 
-class _NewNoteScreenState extends State<NewNoteScreen> {
+class _EditNoteScreenState extends State<EditNoteScreen> {
   TextEditingController _title;
   TextEditingController _body;
   NotesDatabase db;
@@ -19,20 +25,33 @@ class _NewNoteScreenState extends State<NewNoteScreen> {
   @override
   void initState() {
     super.initState();
-    _title = TextEditingController();
-    _body = TextEditingController();
+    _title = TextEditingController(text: widget.title);
+    _body = TextEditingController(text: widget.body);
     db = Provider.of<NotesDatabase>(context, listen: false);
   }
 
-  void publishNote() async {
-    await db.addNote(_title.text, _body.text);
+  void saveEdits() async {
+    await db.editNode(widget.id, _title.text, _body.text);
+    Navigator.of(context).pop();
+  }
+
+  void deleteNote() async {
+    await db.deleteNote(widget.id);
     Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('New Note')),
+      appBar: AppBar(
+        title: Text('Edit Note'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: deleteNote,
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -50,7 +69,7 @@ class _NewNoteScreenState extends State<NewNoteScreen> {
                     vertical: 4.0,
                   ),
                   child: Text(
-                    "Publish",
+                    "Save",
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
@@ -60,7 +79,7 @@ class _NewNoteScreenState extends State<NewNoteScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                     side: BorderSide(width: 2.0)),
-                onPressed: publishNote,
+                onPressed: saveEdits,
               )
             ],
           ),

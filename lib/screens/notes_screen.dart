@@ -24,7 +24,7 @@ class _NotesScreenState extends State<NotesScreen> {
       appBar: AppBar(
         title: Text(
           widget.title,
-          style: GoogleFonts.yesevaOne(
+          style: GoogleFonts.robotoSlab(
             color: Colors.black,
             fontSize: 25.0,
             shadows: [
@@ -41,8 +41,11 @@ class _NotesScreenState extends State<NotesScreen> {
         padding: const EdgeInsets.all(8.0),
         child: StaggeredGridView.countBuilder(
           crossAxisCount: 2,
-          itemBuilder: (ctx, idx) =>
-              Note(notes[idx]['title'], notes[idx]['body']),
+          itemBuilder: (ctx, idx) => Note(
+            id: notes[idx]['id'],
+            title: notes[idx]['title'],
+            body: notes[idx]['body'],
+          ),
           itemCount: notes.length,
           staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
         ),

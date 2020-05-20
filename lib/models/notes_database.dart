@@ -35,8 +35,19 @@ class NotesDatabase with ChangeNotifier {
   }
 
   Future<void> addNote(String title, String body) async {
-    await _db
-        .rawInsert('INSERT INTO Notes(title, body) VALUES ("$title", "$body")');
+    await _db.rawInsert(
+        'INSERT INTO Notes(title, body) VALUES (?, ?)', [title, body]);
+    _queryDatabase();
+  }
+
+  Future<void> editNode(int id, String title, String body) async {
+    await _db.rawUpdate(
+        'UPDATE Notes SET title = ?, body = ? WHERE id = ?', [title, body, id]);
+    _queryDatabase();
+  }
+
+  Future<void> deleteNote(int id) async {
+    await _db.rawDelete('DELETE FROM Notes WHERE id = ?', [id]);
     _queryDatabase();
   }
 }

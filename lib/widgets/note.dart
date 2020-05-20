@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../screens/edit_note_screen.dart';
+
 class Note extends StatelessWidget {
+  final int id;
   final String title, body;
-  Note(this.title, this.body);
+  Note({
+    @required this.id,
+    @required this.title,
+    @required this.body,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,7 +21,15 @@ class Note extends StatelessWidget {
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(10.0),
-        onTap: () {},
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => EditNoteScreen(
+              id: id,
+              title: title,
+              body: body,
+            ),
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
