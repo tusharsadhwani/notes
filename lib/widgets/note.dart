@@ -35,7 +35,9 @@ class Note extends StatelessWidget {
             maxHeight: 240,
           ),
           padding: const EdgeInsets.all(10.0),
-          child: Wrap(
+          child: ListView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             children: [
               Text(
                 title,
@@ -45,6 +47,7 @@ class Note extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              SizedBox(height: 5.0),
               Text(body),
             ],
           ),
