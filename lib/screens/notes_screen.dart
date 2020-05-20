@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import 'new_note_screen.dart';
 import '../widgets/note.dart';
+import '../models/notes_database.dart';
 
 class NotesScreen extends StatefulWidget {
   NotesScreen({Key key, @required this.title}) : super(key: key);
@@ -13,37 +16,25 @@ class NotesScreen extends StatefulWidget {
 }
 
 class _NotesScreenState extends State<NotesScreen> {
-  var notes = [
-    {
-      'title': "Test Note",
-      'body': "Idk what to type here just making something up uwu",
-    },
-    {
-      'title': "Lorem Big",
-      'body':
-          "Cillum laboris voluptate ut laborum mollit nulla. Consequat nostrud tempor exercitation officia cillum laboris. Eiusmod enim incididunt non do. Dolor sint aute eu consequat non aliqua ex. Amet id do est nostrud est anim sint ullamco eiusmod in commodo nisi occaecat. Reprehenderit eiusmod consequat esse voluptate laboris excepteur velit est ad. Esse velit in nulla amet mollit aute. Pariatur laborum exercitation reprehenderit id adipisicing ut cillum.",
-    },
-    {
-      'title': "Groceries",
-      'body': "- spam\n- eggs\n- meat\n- bacon\n- cheese\n- milk",
-    },
-    {
-      'title': "Big title note: 10 step plan to success",
-      'body':
-          "Success is something that everyone desires, but there is no such thing as a sure-shot way to earn success sorry",
-    },
-    {
-      'title': "yo",
-      'body': "sup",
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final notes = Provider.of<NotesDatabase>(context).notes;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           widget.title,
+          style: GoogleFonts.yesevaOne(
+            color: Colors.black,
+            fontSize: 25.0,
+            shadows: [
+              Shadow(
+                color: Colors.grey,
+                offset: Offset(0.8, 1.5),
+                blurRadius: 5.0,
+              )
+            ],
+          ),
         ),
       ),
       body: Padding(

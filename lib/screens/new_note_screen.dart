@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/notes_database.dart';
 
 class NewNoteScreen extends StatefulWidget {
   static const routeName = '/newnote';
@@ -8,46 +11,77 @@ class NewNoteScreen extends StatefulWidget {
 }
 
 class _NewNoteScreenState extends State<NewNoteScreen> {
+  TextEditingController _title;
+  TextEditingController _body;
+
+  @override
+  void initState() {
+    super.initState();
+    _title = TextEditingController();
+    _body = TextEditingController();
+  }
+
+  void publishNote() async {
+    final db = Provider.of<NotesDatabase>(context, listen: false);
+    await db.addNote(_title.text, _body.text);
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Title',
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            Text(
-              'Non amet sit sit aliqua. Et consequat cillum laborum ipsum occaecat pariatur labore commodo. Deserunt aliqua dolor ut sunt dolore eiusmod exercitation ut sint. Ex cupidatat minim nulla laborum sunt mollit tempor irure officia.\n\nDo amet dolor est dolore non in nostrud nostrud reprehenderit sunt eiusmod. Irure cupidatat labore commodo sunt nulla id esse exercitation cupidatat commodo culpa qui qui. Tempor quis exercitation ad qui officia. Proident ipsum fugiat nisi nostrud.',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            SizedBox(
-              height: 12.0,
-            ),
-            FlatButton(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 2.0,
-                  vertical: 4.0,
+      appBar: AppBar(title: Text('New Note')),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextField(
+                controller: _title,
+                decoration: InputDecoration(
+                  hintText: 'Title',
+                  border: InputBorder.none,
                 ),
-                child: Text(
-                  "Publish",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
+                keyboardType: TextInputType.multiline,
+                minLines: 1,
+                maxLines: 3,
+                style: Theme.of(context).textTheme.headline3,
+              ),
+              TextField(
+                controller: _body,
+                decoration: InputDecoration(
+                  hintText: 'Note text',
+                  border: InputBorder.none,
+                ),
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              SizedBox(
+                height: 12.0,
+              ),
+              FlatButton(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 2.0,
+                    vertical: 4.0,
+                  ),
+                  child: Text(
+                    "Publish",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  side: BorderSide(width: 2.0)),
-              onPressed: () {},
-            )
-          ],
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    side: BorderSide(width: 2.0)),
+                onPressed: publishNote,
+              )
+            ],
+          ),
         ),
       ),
     );
