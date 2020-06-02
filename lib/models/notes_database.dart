@@ -31,7 +31,7 @@ class NotesDatabase with ChangeNotifier {
   }
 
   List<Map<String, dynamic>> get notes {
-    return _notes;
+    return [..._notes];
   }
 
   Future<void> addNote(String title, String body) async {
