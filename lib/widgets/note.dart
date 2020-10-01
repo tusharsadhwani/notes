@@ -35,9 +35,9 @@ class Note extends StatelessWidget {
             maxHeight: 240,
           ),
           padding: const EdgeInsets.all(10.0),
-          child: ListView(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
