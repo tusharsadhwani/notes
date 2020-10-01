@@ -77,10 +77,11 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                   ),
                 ),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    side: BorderSide(width: 2.0)),
+                  borderRadius: BorderRadius.circular(50),
+                  side: BorderSide(width: 2.0),
+                ),
                 onPressed: saveEdits,
-              )
+              ),
             ],
           ),
         ),

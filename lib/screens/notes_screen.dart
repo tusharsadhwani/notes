@@ -32,7 +32,7 @@ class _NotesScreenState extends State<NotesScreen> {
                 color: Colors.grey,
                 offset: Offset(0.8, 1.5),
                 blurRadius: 5.0,
-              )
+              ),
             ],
           ),
         ),
